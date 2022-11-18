@@ -1,7 +1,17 @@
 var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-
-function setUpGame(){
+var ctx = c.getContext("2d");
+var canvas=document.getElementById("myCanvas");
+let spaceMovePaddle = 10;
+let spaceMoveBall  = 0;
+let positionPaddle = {
+    x: 415,
+    y: 660
+};
+let positionBall = {
+    x: 490,
+    y: 646
+};
+function drawBrick(){
         ctx.beginPath();
         ctx.fillStyle = "green";
         ctx.fill();
@@ -21,15 +31,12 @@ function setUpGame(){
             x = 14;
             y += heightBrick + 8; //mỗi hàng gạch cách nhau 8px
         }
-
-        drawPaddle();
-        drawBall();
        // 
 }
 
 function drawPaddle(){
     ctx.beginPath();
-    ctx.rect(415,660,170,30);
+    ctx.rect(positionPaddle.x,positionPaddle.y,170,30);
     ctx.fillStyle = "tomato";
     ctx.fill();
     ctx.stroke();
@@ -38,16 +45,73 @@ function drawPaddle(){
 
 function drawBall(){
     ctx.beginPath();
-    ctx.rect(490,646,14,14);
+    ctx.rect(positionBall.x,positionBall.y,14,14);
     ctx.fillStyle = "gray";
     ctx.fill();
     ctx.stroke();
 }
 
-setUpGame();
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawBrick();
+    drawPaddle();
+    drawBall();
+}
+draw();
 // di chuyển banh bằng cách thay đổi tọa độ y, 
 //Nếu tọa độ y của banh bằng tọa độ y của dĩa hứng thì banh nảy lên
 //Nếu tọa độ y của mép dưới cục gạch hoặc  bằng tọa độ y của dĩa, hoặc đụng hai mép khung game 
 //thì banh nảy xuống. Khi chạm thì random ngẫu nhiên tọa độ x trong khoảng độ dài cục gạch 
 //tạo đường đi ngẫu nhiên cho banh. 
 //Nếu banh chạm tọa độ mép dưới khung game thì banh biến mất và kết thúc trò chơi.
+
+function overgame(){
+    if (positionBall.y == 686){
+        positionBall.y = 701; //banh bien mat va overgame
+    }
+}
+
+// Di chuyen 
+function updateX(objectMove,distance){
+    objectMove.x += distance;
+
+    if (objectMove.x < 0)
+    objectMove.x = 0;
+    if (objectMove.x > 830){
+        objectMove.x = 830;
+    }
+}
+
+function updateY(objectMove,distance){
+    objectMove.y += distance;
+
+    if (objectMove.y < 0)
+        objectMove.y = 0;
+    if (objectMove.y > 700){
+        objectMove.y = 700;
+    }
+}
+
+function randomPosition(){
+    spaceMoveBall = Math.floor(Math.random() * (5 - (-5))) - 5;
+}
+
+// Bat su kien di chuyen dia
+window.addEventListener("keydown", function(event){
+    if (event.defaultPrevented){
+        return;
+    }
+    if (event.code === "ArrowLeft"){
+        updateX(positionPaddle,-spaceMove);
+        console.log("left", positionPaddle.x);
+    }
+    else if (event.code === "ArrowRight"){
+        updateX(positionPaddle,spaceMove);
+        console.log("right",positionPaddle.x);
+    }
+    setInterval(draw);
+}, true);
+
+window.addEventListener("click", function(event){
+    startGame();
+}, true);
