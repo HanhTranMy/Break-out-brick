@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+.pause {
+    background-image: url("./img/pause.png");
+    background-size: cover;
+}
+
+.endgame {
+    background-image: url("./img/endgame.png");
+    background-size: cover;
+}
+
+body {
+    background: url("../img/background.png") no-repeat fixed center;
+    background-size: cover;
+    color:#fff;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+canvas{
+    background-color: #fff;
+}
+
+.btn{
+    background-color: #761322;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+}
