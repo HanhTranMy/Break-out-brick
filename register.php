@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 $announce = "";
 include_once('submit.php');
 ?>

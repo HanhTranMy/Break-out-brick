@@ -41,7 +41,7 @@ include_once('submit.php');
         <a href="register.php" id="register" class="btn my-3 p-2" style="width: 100%;">REGISTER</a>
       </div>
 
-      <p class="announce"></p>
+      <p class="announce"><?php echo $announce;  ?></p>
     </form>
   </div>
 

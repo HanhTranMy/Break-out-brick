@@ -2,13 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
 .pause {
-    background-image: url("./img/pause.png");
+    background-image: url("../img/pause.png") !important;
     background-size: cover;
+    background-color: none;
 }
 
 .endgame {
-    background-image: url("./img/endgame.png");
+    background-image: url("../img/endgame.png") !important;
     background-size: cover;
+    background-color: none;
+
 }
 
 body {
@@ -21,6 +24,7 @@ body {
 
 canvas{
     background-color: #fff;
+    border: 8px solid #ddd;
 }
 
 .btn{
@@ -29,3 +33,4 @@ canvas{
     padding: 0.75rem 1rem;
     border-radius: 1rem;
 }
+
