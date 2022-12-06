@@ -26,12 +26,45 @@ let moveRight = false; //đánh dấu sự kiện nhấn phím phải di chuyể
 let moveLeft = false; //đánh dấu sự kiện nhấn phím trái di chuyển paddle sang trái
 
 async function setUpData() {
+  let bricksdatabase = [];
   let res = await fetch("./getData.php", { method: "POST" });
   let data = await res.json();
-
+  
   resetPaddle();
   resetBall();
+  setupBricks();
+    //xử lí gạch: gạch là một chuỗi số
+    //lấy ra và cộng dồn đến khi nào gặp dấu /t thì chuyển sang num, đánh dấu chuyển x - y
+    // nếu là x thì add vào x ngược lại add vào y
+  function setupBricks(){
+    let lenBrickDatabase = data.brick.length;
+    let j = 0; let flag = 1;
+    while (j < lenBrickDatabase) {
+      let num = ""; 
+      while (data.brick[j] != " "){
+        num += data.brick[j];
+        j++;
+      } 
+      if (data.brick[j] == " ") {
+        if (flag >0) { // tọa độ của x
+          bricksdatabase.push({
+            x : Number(num),
+            y : 0,
+            width : 90,
+            height : 30
+          });
+        }
+        else{ //tọa độ y
+          bricksdatabase[bricksdatabase.length-1].y = Number(num);
+        }
+        j++;
+        flag = -flag;
+      }
+    }
+    console.log("bricks database: "+ bricksdatabase.length);
+  }
 
+    
   score = Number(data.scoreUser);
 
   function resetBall() {
@@ -64,14 +97,6 @@ async function setUpData() {
     };
   }
 
-  for (let i = 0; i < data.brick.length - 1; i++) {
-    bricks.push({
-      x: Number(data.brick.x),
-      y: Number(data.brick.y),
-      width: 90,
-      height: 30,
-    });
-  }
 
   // Xử lí trạng thái game
 
@@ -92,8 +117,7 @@ async function setUpData() {
     if (!statusGame.pause && !statusGame.end) {
       clearTimeout(start);
       resetGame();
-      console.log(ball);
-    }
+        }
     statusGame.pause = false;
     startGame();
   });
@@ -156,6 +180,7 @@ async function setUpData() {
       ctx.fill();
       ctx.stroke();
     }
+
   }
 
   function movePaddle() {
@@ -215,15 +240,22 @@ async function setUpData() {
     }
   }
 
-  function addBrick() {
-    // Vẽ gạch từ tọa độ x=14, y=10. Mỗi cục gạch có kích thước 90x30px;
-    // Có 4 hàng gạch, vẽ mỗi cục gạch đến khi cục gạch thứ n tràn ra ngoài khung game
-    let xBrick = 14;
-    let yBrick = 50;
-    let heightBrick = 30;
-    let widthBrick = 90;
-    bricks = [];
-    for (number = 1; number < 5; number++) {
+  function addBrick(){
+    
+  console.log("bricks database before: "+ bricksdatabase.length);
+  bricks = bricksdatabase.slice(0, bricksdatabase.length);
+  console.log("bricks : "+ bricks.length);
+  console.log("bricks database after: "+ bricksdatabase.length);
+
+    if (bricks.length == 0){
+      // Vẽ gạch từ tọa độ x=14, y=10. Mỗi cục gạch có kích thước 90x30px;
+      // Có 4 hàng gạch, vẽ mỗi cục gạch đến khi cục gạch thứ n tràn ra ngoài khung game
+      let xBrick = 14;
+      let yBrick = 50;
+      let heightBrick = 30;
+      let widthBrick = 90;
+      bricks = [];
+      for (number = 1; number < 5; number++) {
       while (xBrick + widthBrick < 1000) {
         bricks.push({
           x: xBrick,
@@ -235,15 +267,15 @@ async function setUpData() {
       }
       xBrick = 14;
       yBrick += heightBrick + 8; //mỗi hàng gạch cách nhau 8px
-    }
 
+  }}
+}
     // Vẽ và xử lí các sự kiện khi game bắt đầu
     function startGame() {
       if (statusGame.end && !statusGame.pause) {
         statusGame.end = false;
-        resetBall();
+        resetGame();
       }
-      console.log("ball 1 : " + ball.x + " " + ball.y);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawScore();
@@ -289,6 +321,4 @@ async function setUpData() {
       });
     });
   }
-}
-
 setUpData();

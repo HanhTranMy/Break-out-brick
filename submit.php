@@ -37,7 +37,7 @@ function register()
         $value = "";
         for ($number = 1; $number < 5; $number++) {
             while ($xBrick + $widthBrick < 1000) {
-                $value = $value . "$xBrick  $yBrick ";
+                $value = $value . "$xBrick $yBrick ";
                 $xBrick += $widthBrick + 8; //mỗi cục gạch cách nhau 8px
             }
 
