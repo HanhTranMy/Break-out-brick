@@ -20,5 +20,44 @@ Nhiệm vụ nơi play game chính
 -submit.php: php. 
 Nhiệm vụ Chứa 2 function xử lí sự kiện đăng ký đăng nhập
 
--
+-utils.php: php
+Nhiệm vụ Chứa các function con thực hiện các nhiệm vụ xử lí dữ liệu upload, download các dữ liệu từ sql xuống cho client và ngược lại
 
+-uploaddata.php: php
+Nhiệm vụ Upload dữ liệu lên database
+
+-getdata.php: php
+Nhiệm vụ lấy các dữ liệu từ database xuống cho client play game
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SQL
+-Chứa dữ liệu ball, brick, paddle, score phục vụ nhiệm vụ lưu trạng thái khi user chơi game
+-breakoutbrick.sql
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CÁCH CHẠY GAME
+
+Yêu cầu:
+-Có Xampp
+
+Thực hiện:
+*Lưu ý: folder game phải được giải nén và lưu trong đường dẫn sau: C:\xampp\htdocs\
+-Sau khi giải nén thư mục, thực hiện chạy xampp.
+-Truy cập cơ sở dữ liệu của xampp. Thông thường có đường dẫn là localhost/phpmyadmin/admin
+-Thực hiện tạo database mới tên breakoutbrick.
+-Mở file breakoutbrick.sql dán vào SQL trên xampp để chạy code tạo bảng, dữ liệu.
+-Sau khi chạy thành công, truy cập browser gõ địa chỉ của file index.php. Thông thường có đường dẫn là 127.0.0.1/Break-out-brick/index.php
+-Browser hiện web login yêu cầu login vào trước khi chơi game.
+-Người chơi có thể login hoặc đăng kí một tài khoản mới.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CÁCH CHƠI GAME
+
+-Bấm nút start để play game. Nếu game đang chơi mà tiếp tục bấm nút start thì game sẽ được resart lại.
+-Bấm nút pause để dừng chơi game.
+-Bấm nút save để lưu trạng thái game.
+-Di chuyển paddle sao cho banh không chạm xuống đất bằng phím mũi tên -> hoặc phím <- để di chuyển trái phải.
+-Khi banh chạm gạch sẽ được trả về một vị trí bất kỳ.
