@@ -1,0 +1,24 @@
+Tổng quan:
+
+Folder
+-css: chứa các file trang trí web
+-img: chứa các tệp hình ảnh trong web
+-js: chứa tệp script.js làm nhiệm vụ xử lí sự kiện, thực hiện chức năng chơi game
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+File
+-login.php: chứa html, đoạn php bắt đầu phiên. 
+Nhiệm vụ: form đăng nhập
+
+-register.php: chứa html, đoạn php bắt đầu phiên. 
+Nhiệm vụ form đăng ký
+
+-index.php: chứa html, đoạn php bắt đầu phiên.
+Nhiệm vụ nơi play game chính
+
+-submit.php: php. 
+Nhiệm vụ Chứa 2 function xử lí sự kiện đăng ký đăng nhập
+
+-
+
