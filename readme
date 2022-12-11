@@ -45,7 +45,7 @@ Yêu cầu:
 Thực hiện:
 *Lưu ý: folder game phải được giải nén và lưu trong đường dẫn sau: C:\xampp\htdocs\
 -Sau khi giải nén thư mục, thực hiện chạy xampp.
--Truy cập cơ sở dữ liệu của xampp. Thông thường có đường dẫn là localhost/phpmyadmin/admin
+-Truy cập cơ sở dữ liệu của xampp. Thông thường có đường dẫn là http://localhost/phpmyadmin/
 -Thực hiện tạo database mới tên breakoutbrick.
 -Mở file breakoutbrick.sql dán vào SQL trên xampp để chạy code tạo bảng, dữ liệu.
 -Sau khi chạy thành công, truy cập browser gõ địa chỉ của file index.php. Thông thường có đường dẫn là 127.0.0.1/Break-out-brick/index.php
